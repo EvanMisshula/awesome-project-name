@@ -1,5 +1,6 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE RankNTypes       #-}
+{-# LANGUAGE UnicodeSyntax    #-}
 
 -- | Helper funcs for reflex
 --   idk eventjoin and holdEvent seem to usually slow down browser
@@ -12,6 +13,7 @@ import           Data.Time
 import           Data.Time.Clock.System (systemEpochDay)
 import           Reflex
 import qualified Reflex.Dom             as Dom
+import Prelude.Unicode
 
 eventJoin :: (Reflex t, MonadHold t m) => Event t (Event t a) -> m (Event t a)
 eventJoin = switchHold never

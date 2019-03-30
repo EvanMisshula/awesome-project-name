@@ -1,9 +1,6 @@
-let reflex-platform = builtins.fetchGit {
-      url = https://github.com/reflex-frp/reflex-platform.git;
-      ref = "develop";
-      rev = "f3ff81d519b226752c83eefd4df6718539c3efdc";
-    };
-in (import reflex-platform { }).project ({ pkgs, ... }: {
+{ reflex-platform ? import ./reflex-platform {} }:
+
+reflex-platform.project ({ pkgs, ... }: {
     packages = {
         common = ./common;
         backend = ./backend;
@@ -14,6 +11,7 @@ in (import reflex-platform { }).project ({ pkgs, ... }: {
       beam-migrate = self.callPackage ./packages/beam-migrate.nix { };
       beam-postgres = self.callPackage ./packages/beam-postgres.nix { };
       servant-reflex = self.callPackage ./packages/servant-reflex.nix { };
+      Glob = pkgs.haskell.lib.dontCheck super.Glob;
       servant = pkgs.haskell.lib.dontCheck (pkgs.haskell.lib.overrideCabal super.servant (drv: {
         testHaskellDepends = []; # servant has a dependency on testdoc 0.16.0 which fails to build in nix
       }));
@@ -31,4 +29,4 @@ in (import reflex-platform { }).project ({ pkgs, ... }: {
         ccjs = pkgs.closurecompiler;
         vim = pkgs.vim;
     };
-})
+    })  

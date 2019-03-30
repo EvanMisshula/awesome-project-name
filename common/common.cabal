@@ -1,9 +1,3 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
---
--- see: https://github.com/sol/hpack
---
--- hash: 9be3d5f45323cbd5330acd0d115f899bb18e3277e33f8f64c58ed5a89af6d334
-
 cabal-version:  >= 1.10
 name:           common
 version:        1.0.0.0
